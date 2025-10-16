@@ -27,10 +27,6 @@ http = [
     "fastapi>=0.110.0",
     "uvicorn[standard]>=0.29.0",
 ]
-smithery = [
-    "fastmcp>=0.1.0",
-    "smithery>=1.0.0",
-]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
