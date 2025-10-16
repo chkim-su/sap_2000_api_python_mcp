@@ -2,12 +2,13 @@
 runtime: python
 
 startCommand:
-  type: stdio
+  type: streamable-http
   command: python
   args:
     - "-m"
     - "mcp.stdio_server"
   env:
+    MCP_TRANSPORT: streamable-http
     WORK_DIR: "{{work_dir}}"
 
 configSchema:
