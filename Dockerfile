@@ -14,8 +14,9 @@ COPY package.json ./
 COPY smithery.yaml ./
 
 # Install Python dependencies
-# Install with [mcp] extra for FastMCP support
-RUN pip install --no-cache-dir -e ".[mcp]"
+# Install with setuptools first, then install package with smithery extra
+RUN pip install --no-cache-dir setuptools wheel && \
+    pip install --no-cache-dir ".[smithery]"
 
 # Expose environment variables (will be set by Smithery)
 ENV MCP_TRANSPORT=streamable-http
