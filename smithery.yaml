@@ -1,0 +1,39 @@
+# Smithery.ai Configuration for SAP2000 MCP Server
+# Enables remote hosting on Smithery infrastructure
+
+startCommand:
+  type: stdio
+
+  # Configuration schema for user settings
+  configSchema:
+    type: object
+    properties:
+      work_dir:
+        type: string
+        title: "Work Directory"
+        description: "Directory for SAP2000 database lookup (optional, defaults to 'build')"
+        default: "build"
+      log_level:
+        type: string
+        title: "Log Level"
+        description: "Logging verbosity level"
+        enum: ["DEBUG", "INFO", "WARNING", "ERROR"]
+        default: "INFO"
+    required: []
+
+  # Command to start the MCP server
+  commandFunction: |-
+    (config) => ({
+      command: 'python',
+      args: ['-m', 'mcp.stdio_server'],
+      env: {
+        WORK_DIR: config.work_dir || 'build',
+        LOG_LEVEL: config.log_level || 'INFO',
+        MCP_TRANSPORT: 'streamable-http'
+      }
+    })
+
+  # Example configuration for testing
+  exampleConfig:
+    work_dir: "build"
+    log_level: "INFO"

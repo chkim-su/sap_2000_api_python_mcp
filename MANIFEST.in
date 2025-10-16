@@ -1,0 +1,12 @@
+include README.md
+recursive-include src/mcp/data *.db
+prune build
+prune dist
+prune .venv
+prune tests
+prune scripts
+prune docs
+exclude CSI_OAPI_Documentation.chm
+exclude SAP2000v1.dll
+global-exclude *.chm
+global-exclude *.dll

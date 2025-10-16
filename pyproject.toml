@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sap2000-python-api"
+version = "0.1.2"
+description = "Pipeline for building SAP2000 OAPI model context protocol assets."
+authors = [{name = "MCP Team"}]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "UNLICENSED" }
+keywords = ["sap2000", "mcp", "stdio", "search", "sqlite"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=24.3",
+    "mypy>=1.9",
+]
+mcp = [
+    "fastmcp>=0.1.0",
+]
+http = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+]
+smithery = [
+    "fastmcp>=0.1.0",
+    "smithery>=1.0.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "--maxfail=1 --disable-warnings -q"
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"mcp" = ["data/*.db"]
+
+[project.scripts]
+# Provide a direct Python console entrypoint for stdio transport (no ports)
+sap2000-mcp-py = "mcp.stdio_server:main"
