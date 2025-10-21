@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 from typing import List, Optional, Dict, Any
@@ -64,7 +64,7 @@ def main() -> None:  # pragma: no cover
                     allow_origins=["*"],
                     allow_methods=["*"],
                     allow_headers=["*"],
-                    allow_credentials=True,
+                    allow_credentials=False,
                     expose_headers=["Mcp-Session-Id"],
                 )
             ]
