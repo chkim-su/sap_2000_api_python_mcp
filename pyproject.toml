@@ -23,19 +23,8 @@ dev = [
     "black>=24.3",
     "mypy>=1.9",
 ]
-mcp = [
-    "fastmcp>=0.1.0",
-]
-http = [
-    "fastapi>=0.110.0",
-    "uvicorn[standard]>=0.29.0",
-]
-smithery = [
-    # Ensure HTTP transport deps exist in remote runtime
-    "fastmcp>=0.1.0",
-    "fastapi>=0.110.0",
-    "uvicorn[standard]>=0.29.0",
-]
+mcp = ["fastmcp>=0.1.0"]
+smithery = ["fastmcp>=0.1.0"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"

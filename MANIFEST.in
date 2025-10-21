@@ -5,6 +5,7 @@ prune dist
 prune .venv
 prune tests
 prune scripts
+prune bin
 prune docs
 exclude CSI_OAPI_Documentation.chm
 exclude SAP2000v1.dll

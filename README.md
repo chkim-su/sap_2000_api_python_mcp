@@ -1,52 +1,29 @@
-# SAP2000 MCP (stdio, no ports)
+﻿# SAP2000 MCP (stdio/streamable-http)
 
-寃쎈웾 stdio 湲곕컲 MCP ?쒕쾭?낅땲?? CHM/DLL ?놁씠 ?댁옣??SQLite DB留??ъ슜?⑸땲?? ?먭꺽 ?몄뒪?낆씠??濡쒖뺄 ?ы듃媛 ?꾩슂?섏? ?딆뒿?덈떎.
+경량 MCP 서버로, 포트 없이 stdio 또는 streamable-http(원격)로 동작합니다. CHM/DLL 없이 패키지된 SQLite DB를 사용합니다.
 
-## 鍮좊Ⅸ ?쒖옉
-- Python ?ㅼ튂??  - ?ㅼ튂: `pip install sap2000-python-api[mcp]`
-  - ?ㅽ뻾: `sap2000-mcp-py` ?먮뒗 `python -m sap2000_mcp.stdio_server`
-- Node CLI(?좏깮)
-  - ?ㅼ튂: `npm i -g @tntndi001/sap2000-python-api`
-  - ?ㅽ뻾: `sap2000-mcp` (?꾩슂 ?쒖뿉留??꾨줈?몄뒪 ?ㅽ뻾)
+## 빠른 시작
+- 설치: `pip install sap2000-python-api[mcp]`
+- 로컬 실행(stdio): `sap2000-mcp-py` 또는 `python -m sap2000_mcp.stdio_server`
 
-## Claude ?깅줉 ??
-### 諛⑸쾿 1: Smithery瑜??듯븳 ?먭꺽 ?몄뒪??(沅뚯옣)
-?ъ슜?먭? ?ㅼ튂 ?놁씠 諛붾줈 ?ъ슜?????덉뒿?덈떎:
-```bash
-npx @smithery/cli install sap2000-python-api --client claude
-```
+## Claude 등록
+- Smithery(권장):
+  ```bash
+  npx @smithery/cli install sap2000-python-api --client claude
+  ```
+- 로컬 stdio:
+  ```bash
+  claude mcp add --transport stdio sap2000 sap2000-mcp-py
+  ```
 
-### 諛⑸쾿 2: 濡쒖뺄 stdio 紐⑤뱶
-```bash
-claude mcp add --transport stdio sap2000 sap2000-mcp-py
-# ?먮뒗
-claude mcp add --transport stdio sap2000 sap2000-mcp
-```
-
-## ?쒓났 ?꾧뎄
+## 제공 도구
 - `find_functions(q, top_k=10, verb_intent, expand_level, domain_hints, explain)`
 - `to_python(function_id, binding_mode="direct")`
 
-## ?고????쒖빟
-- CHM/DLL 遺덊븘?? 遺덊룷??諛고룷 ?쒖쇅)
-- SQLite DB ?댁옣: `mcp/data/sap2000_mcp.db`
+## 요구 사항
 - Python >= 3.10
+- 데이터베이스: 패키지 포함 `sap2000_mcp/data/sap2000_mcp.db`
 
-## 諛고룷 ?듭뀡
-
-### Smithery ?먭꺽 ?몄뒪??Smithery瑜??듯빐 ?먭꺽 ?몄뒪?낅맗?덈떎. ?ъ슜?먮뒗 ?ы듃 ?ㅼ젙?대굹 濡쒖뺄 ?ㅼ튂 ?놁씠 諛붾줈 ?ъ슜?????덉뒿?덈떎.
-- 諛고룷 URL: https://smithery.ai
-- ?ㅼ튂: `pip install sap2000-python-api[smithery]`
-- ?섍꼍 蹂?? `MCP_TRANSPORT=streamable-http`
-
-### 濡쒖뺄 ?ㅼ튂
-- Python: `pip install sap2000-python-api[mcp]`
-- Node.js: `npm i -g @tntndi001/sap2000-python-api`
-
-## 媛쒕컻??李멸퀬
-- HTTP ?쒕쾭???좏깮??extra: `http`): `pip install .[http]`
-- Smithery 諛고룷: `pip install .[smithery]`
-- 鍮뚮뱶/?ㅽ겕由쏀듃/?뚯뒪???곗텧臾쇱? 諛고룷?먯꽌 ?쒖쇅?⑸땲??
-- ?섍꼍 蹂??
-  - `WORK_DIR`: ?곗씠?곕쿋?댁뒪 ?꾩튂 (湲곕낯媛? `build`)
-  - `MCP_TRANSPORT`: `stdio` (湲곕낯) ?먮뒗 `streamable-http` (Smithery)
+## 환경 변수
+- `WORK_DIR`: 작업 디렉터리(기본: `build`)
+- `MCP_TRANSPORT`: `stdio`(기본) 또는 `streamable-http`
