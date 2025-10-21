@@ -82,7 +82,6 @@ def main() -> None:  # pragma: no cover
             host=host,
             port=port,
             middleware=cors,
-            path="/",
         )
     else:
         # For local stdio mode (default)
