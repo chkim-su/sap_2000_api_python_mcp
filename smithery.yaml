@@ -1,4 +1,4 @@
-# Smithery.ai Configuration for SAP2000 MCP Server
+﻿# Smithery.ai Configuration for SAP2000 MCP Server
 runtime: python
 
 startCommand:
@@ -10,11 +10,6 @@ startCommand:
   env:
     MCP_TRANSPORT: streamable-http
     HOST: 0.0.0.0
-    FASTMCP_STREAMABLE_HTTP_PATH: "/"
-    FASTMCP_LOG_LEVEL: DEBUG
-    FASTMCP_DEBUG: "true"
-    FASTMCP_JSON_RESPONSE: "true"
-    FASTMCP_STATELESS_HTTP: "true"
     WORK_DIR: "{{work_dir}}"
 
 configSchema:
