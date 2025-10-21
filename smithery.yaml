@@ -1,4 +1,4 @@
-﻿# Smithery.ai Configuration for SAP2000 MCP Server
+# Smithery.ai Configuration for SAP2000 MCP Server
 runtime: python
 
 startCommand:
