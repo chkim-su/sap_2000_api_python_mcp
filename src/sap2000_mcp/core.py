@@ -86,7 +86,7 @@ def connect() -> sqlite3.Connection:
             from importlib import resources as importlib_resources
 
             try:
-                pkg_path = importlib_resources.files("mcp").joinpath("data/sap2000_mcp.db")
+                pkg_path = importlib_resources.files("sap2000_mcp").joinpath("data/sap2000_mcp.db")
                 if pkg_path.is_file():
                     candidate = str(pkg_path)
             except Exception:

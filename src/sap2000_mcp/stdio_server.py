@@ -51,11 +51,39 @@ def to_python(function_id: int, binding_mode: str = "direct") -> Dict[str, Any]:
 
 def main() -> None:  # pragma: no cover
     # Support both stdio (local) and streamable-http (Smithery remote hosting)
-    transport_mode = os.getenv("MCP_TRANSPORT", "stdio")
+    transport_mode = os.getenv("MCP_TRANSPORT", "stdio").strip()
 
     if transport_mode == "streamable-http":
-        # For Smithery remote hosting
-        app.run(transport="streamable-http")
+        # Configure CORS for browser-based clients (Smithery scanner)
+        try:
+            from starlette.middleware import Middleware
+            from starlette.middleware.cors import CORSMiddleware
+            cors = [
+                Middleware(
+                    CORSMiddleware,
+                    allow_origins=["*"],
+                    allow_methods=["*"],
+                    allow_headers=["*"],
+                    allow_credentials=True,
+                    expose_headers=["Mcp-Session-Id"],
+                )
+            ]
+        except Exception:
+            cors = []
+
+        host = os.getenv("HOST") or os.getenv("FASTMCP_HOST") or "0.0.0.0"
+        try:
+            port = int(os.getenv("PORT") or os.getenv("FASTMCP_PORT") or "8000")
+        except Exception:
+            port = 8000
+
+        app.run(
+            transport="streamable-http",
+            host=host,
+            port=port,
+            middleware=cors,
+            path="/",
+        )
     else:
         # For local stdio mode (default)
         app.run(transport="stdio")

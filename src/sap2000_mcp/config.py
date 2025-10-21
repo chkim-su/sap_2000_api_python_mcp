@@ -22,3 +22,4 @@ class EnvironmentConfig:
 DEFAULT_ENV = EnvironmentConfig(
     work_dir=Path(os.environ.get("WORK_DIR", "build")).resolve(),
 )
+

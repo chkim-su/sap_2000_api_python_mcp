@@ -1,55 +1,52 @@
-# SAP2000 MCP (stdio, no ports)
+﻿# SAP2000 MCP (stdio, no ports)
 
-경량 stdio 기반 MCP 서버입니다. CHM/DLL 없이 내장된 SQLite DB만 사용합니다. 원격 호스팅이나 로컬 포트가 필요하지 않습니다.
+寃쎈웾 stdio 湲곕컲 MCP ?쒕쾭?낅땲?? CHM/DLL ?놁씠 ?댁옣??SQLite DB留??ъ슜?⑸땲?? ?먭꺽 ?몄뒪?낆씠??濡쒖뺄 ?ы듃媛 ?꾩슂?섏? ?딆뒿?덈떎.
 
-## 빠른 시작
-- Python 설치형
-  - 설치: `pip install sap2000-python-api[mcp]`
-  - 실행: `sap2000-mcp-py` 또는 `python -m mcp.stdio_server`
-- Node CLI(선택)
-  - 설치: `npm i -g @tntndi001/sap2000-python-api`
-  - 실행: `sap2000-mcp` (필요 시에만 프로세스 실행)
+## 鍮좊Ⅸ ?쒖옉
+- Python ?ㅼ튂??  - ?ㅼ튂: `pip install sap2000-python-api[mcp]`
+  - ?ㅽ뻾: `sap2000-mcp-py` ?먮뒗 `python -m sap2000_mcp.stdio_server`
+- Node CLI(?좏깮)
+  - ?ㅼ튂: `npm i -g @tntndi001/sap2000-python-api`
+  - ?ㅽ뻾: `sap2000-mcp` (?꾩슂 ?쒖뿉留??꾨줈?몄뒪 ?ㅽ뻾)
 
-## Claude 등록 예
-
-### 방법 1: Smithery를 통한 원격 호스팅 (권장)
-사용자가 설치 없이 바로 사용할 수 있습니다:
+## Claude ?깅줉 ??
+### 諛⑸쾿 1: Smithery瑜??듯븳 ?먭꺽 ?몄뒪??(沅뚯옣)
+?ъ슜?먭? ?ㅼ튂 ?놁씠 諛붾줈 ?ъ슜?????덉뒿?덈떎:
 ```bash
 npx @smithery/cli install sap2000-python-api --client claude
 ```
 
-### 방법 2: 로컬 stdio 모드
+### 諛⑸쾿 2: 濡쒖뺄 stdio 紐⑤뱶
 ```bash
 claude mcp add --transport stdio sap2000 sap2000-mcp-py
-# 또는
+# ?먮뒗
 claude mcp add --transport stdio sap2000 sap2000-mcp
 ```
 
-## 제공 도구
+## ?쒓났 ?꾧뎄
 - `find_functions(q, top_k=10, verb_intent, expand_level, domain_hints, explain)`
 - `to_python(function_id, binding_mode="direct")`
 
-## 런타임 제약
-- CHM/DLL 불필요, 불포함(배포 제외)
-- SQLite DB 내장: `mcp/data/sap2000_mcp.db`
+## ?고????쒖빟
+- CHM/DLL 遺덊븘?? 遺덊룷??諛고룷 ?쒖쇅)
+- SQLite DB ?댁옣: `mcp/data/sap2000_mcp.db`
 - Python >= 3.10
 
-## 배포 옵션
+## 諛고룷 ?듭뀡
 
-### Smithery 원격 호스팅
-Smithery를 통해 원격 호스팅됩니다. 사용자는 포트 설정이나 로컬 설치 없이 바로 사용할 수 있습니다.
-- 배포 URL: https://smithery.ai
-- 설치: `pip install sap2000-python-api[smithery]`
-- 환경 변수: `MCP_TRANSPORT=streamable-http`
+### Smithery ?먭꺽 ?몄뒪??Smithery瑜??듯빐 ?먭꺽 ?몄뒪?낅맗?덈떎. ?ъ슜?먮뒗 ?ы듃 ?ㅼ젙?대굹 濡쒖뺄 ?ㅼ튂 ?놁씠 諛붾줈 ?ъ슜?????덉뒿?덈떎.
+- 諛고룷 URL: https://smithery.ai
+- ?ㅼ튂: `pip install sap2000-python-api[smithery]`
+- ?섍꼍 蹂?? `MCP_TRANSPORT=streamable-http`
 
-### 로컬 설치
+### 濡쒖뺄 ?ㅼ튂
 - Python: `pip install sap2000-python-api[mcp]`
 - Node.js: `npm i -g @tntndi001/sap2000-python-api`
 
-## 개발자 참고
-- HTTP 서버는 선택적(extra: `http`): `pip install .[http]`
-- Smithery 배포: `pip install .[smithery]`
-- 빌드/스크립트/테스트 산출물은 배포에서 제외됩니다.
-- 환경 변수:
-  - `WORK_DIR`: 데이터베이스 위치 (기본값: `build`)
-  - `MCP_TRANSPORT`: `stdio` (기본) 또는 `streamable-http` (Smithery)
+## 媛쒕컻??李멸퀬
+- HTTP ?쒕쾭???좏깮??extra: `http`): `pip install .[http]`
+- Smithery 諛고룷: `pip install .[smithery]`
+- 鍮뚮뱶/?ㅽ겕由쏀듃/?뚯뒪???곗텧臾쇱? 諛고룷?먯꽌 ?쒖쇅?⑸땲??
+- ?섍꼍 蹂??
+  - `WORK_DIR`: ?곗씠?곕쿋?댁뒪 ?꾩튂 (湲곕낯媛? `build`)
+  - `MCP_TRANSPORT`: `stdio` (湲곕낯) ?먮뒗 `streamable-http` (Smithery)

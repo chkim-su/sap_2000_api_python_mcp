@@ -53,3 +53,4 @@ def build_fts_document(parts: Iterable[str]) -> str:
     """
     combined = " ".join(part for part in parts if part)
     return normalize_for_index(combined)
+

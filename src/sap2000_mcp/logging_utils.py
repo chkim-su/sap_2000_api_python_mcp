@@ -18,3 +18,4 @@ def configure_logging(level: int = logging.INFO, logger_name: Optional[str] = No
         logger.addHandler(handler)
     logger.setLevel(level)
     return logger
+

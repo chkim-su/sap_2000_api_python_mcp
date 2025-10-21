@@ -6,9 +6,14 @@ startCommand:
   command: python
   args:
     - "-m"
-    - "mcp.stdio_server"
+    - "sap2000_mcp.stdio_server"
   env:
     MCP_TRANSPORT: streamable-http
+    HOST: 0.0.0.0
+    FASTMCP_LOG_LEVEL: INFO
+    FASTMCP_DEBUG: "false"
+    FASTMCP_JSON_RESPONSE: "true"
+    FASTMCP_STATELESS_HTTP: "true"
     WORK_DIR: "{{work_dir}}"
 
 configSchema:

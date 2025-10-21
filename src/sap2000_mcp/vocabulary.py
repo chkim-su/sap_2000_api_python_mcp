@@ -86,3 +86,4 @@ def group_by_domain() -> Dict[str, List[str]]:
         if group.domain:
             domain_map.setdefault(group.domain, []).append(group.canonical)
     return domain_map
+

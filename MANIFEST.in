@@ -1,5 +1,5 @@
 include README.md
-recursive-include src/mcp/data *.db
+recursive-include src/sap2000_mcp/data *.db
 prune build
 prune dist
 prune .venv

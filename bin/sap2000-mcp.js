@@ -31,7 +31,7 @@ function inRepo() {
 
 function ensureDeps(python) {
   // Try import mcp.api
-  const probe = spawnSync(python, ['-c', 'import mcp.api; print("ok")']);
+  const probe = spawnSync(python, ['-c', 'import sap2000_mcp.stdio_server as _; print("ok")']);
   if (probe.status === 0) return;
   if (inRepo()) {
     console.log('[sap2000-mcp] Installing Python package from current repo (editable) ...');
@@ -55,7 +55,7 @@ function main() {
   ensureDb();
 
   console.log('[sap2000-mcp] Starting stdio MCP server ...');
-  run(python, ['-m', 'mcp.stdio_server']);
+  run(python, ['-m', 'sap2000_mcp.stdio_server']);
 }
 
 main();

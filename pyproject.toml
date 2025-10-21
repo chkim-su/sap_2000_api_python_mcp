@@ -13,6 +13,7 @@ license = { text = "UNLICENSED" }
 keywords = ["sap2000", "mcp", "stdio", "search", "sqlite"]
 dependencies = [
     "fastmcp>=0.1.0",
+    "pydantic>=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -26,6 +27,12 @@ mcp = [
     "fastmcp>=0.1.0",
 ]
 http = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+]
+smithery = [
+    # Ensure HTTP transport deps exist in remote runtime
+    "fastmcp>=0.1.0",
     "fastapi>=0.110.0",
     "uvicorn[standard]>=0.29.0",
 ]
@@ -44,8 +51,8 @@ where = ["src"]
 exclude = ["tests*"]
 
 [tool.setuptools.package-data]
-"mcp" = ["data/*.db"]
+"sap2000_mcp" = ["data/*.db"]
 
 [project.scripts]
 # Provide a direct Python console entrypoint for stdio transport (no ports)
-sap2000-mcp-py = "mcp.stdio_server:main"
+sap2000-mcp-py = "sap2000_mcp.stdio_server:main"
